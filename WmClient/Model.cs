@@ -176,7 +176,7 @@ namespace Wmclient
     }
 
     /// <summary>
-    /// JSONModelMktName  holds a device's model and marketing names. It partially replaces deprecated JSONMakeModel
+    /// JSONModelMktName  holds a device's model and marketing names.
     /// </summary>
     public class JSONModelMktName
     {

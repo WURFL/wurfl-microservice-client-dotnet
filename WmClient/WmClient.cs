@@ -347,56 +347,6 @@ namespace Wmclient
         }
 
         /// <summary>
-        /// Returns an array of "identity" informations about all the devices loaded in WM server.
-        /// This method is obsolete
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete("GetAllMakeModel is deprecated, use getAllDeviceMakes and getAllDevicesForMake(String make) instead.")]
-        public JSONMakeModel[] GetAllMakeModel()
-        {
-            lock (_lock)
-            {
-                if (this.makeModels != null && this.makeModels.Length > 0)
-                {
-                    return this.makeModels;
-                }
-            }
-
-            JSONMakeModel[] mkMdRes = null;
-
-            HttpResponseMessage response = null;
-            try
-            {
-                response = c.GetAsync(createURL("/v2/alldevices/json")).Result;
-                if (response != null && response.IsSuccessStatusCode && response.Content != null)
-                {
-                    mkMdRes = response.Content.ReadAsAsync<JSONMakeModel[]>().Result;
-                    lock (_lock)
-                    {
-                        if (this.makeModels == null || this.makeModels.Length == 0)
-                        {
-                            this.makeModels = mkMdRes;
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw new WmException("Error getting make and model informations from WM server: " + e.Message, e);
-            }
-            finally
-            {
-                if (response != null)
-                {
-                    response.Dispose();
-                }
-
-            }
-
-            return mkMdRes;
-        }
-
-        /// <summary>
         /// Searches WURFL device data using the given user-agent for detection.
         /// Throws WmClientException in case any client related problem occurs.
         /// </summary>

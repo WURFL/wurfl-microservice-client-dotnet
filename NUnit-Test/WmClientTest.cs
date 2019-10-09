@@ -69,7 +69,7 @@ namespace NUnit_Test
                 JSONInfoData jsonInfoData = client.GetInfo();
                 Assert.NotNull(jsonInfoData);
                 Assert.NotNull(jsonInfoData.Wm_version);
-                Assert.True(jsonInfoData.Wm_version.Length >= 6);
+                Assert.True(jsonInfoData.Wm_version.Length >= 5);
                 Console.WriteLine(string.Format("WM server version #{0} ", jsonInfoData.Wm_version));
                 Assert.True(jsonInfoData.Wurfl_info.Length > 0);
                 Assert.True(jsonInfoData.Important_headers.Length > 0);
@@ -630,35 +630,6 @@ namespace NUnit_Test
             Assert.AreEqual(1, csizes[1]);
             client.DestroyConnection();
         }
-
-        [Test]
-        public void TestGetAllMakeModel()
-        {
-            var client = CreateTestCachedClient(1000);
-            var makeModels = client.GetAllMakeModel();
-            Assert.NotNull(makeModels);
-            Assert.True(makeModels.Length >= 20000);
-            Assert.NotNull(makeModels[0].Brand_Name);
-            Assert.NotNull(makeModels[0].Model_Name);
-            // This checks that makeModels has been assigned to cached value
-            Assert.True(client.MakeModels.Length >= 20000);
-
-            // we have to make sure at least marketing name is serialized,
-            // since is not a mandatory field.
-            bool hasMarketingName = false;
-            foreach (JSONMakeModel mkmd in makeModels)
-            {
-                if (mkmd.Marketing_Name != null)
-                {
-                    hasMarketingName = true;
-                    break;
-                }
-            }
-            Assert.True(hasMarketingName);
-            client.ClearCachesIfNeeded("2199-12-31");
-            Assert.AreEqual(0, client.MakeModels.Length);
-
-        }
 #endif
 
         [Test]
@@ -666,7 +637,7 @@ namespace NUnit_Test
         {
             var userAgents = TestData.CreateTestUserAgentList();
             var client = CreateTestCachedClient(50000);
-            int numThreads = 4;
+            int numThreads = 16;
             Thread[] threads = new Thread[numThreads];
             for (int i = 0; i < numThreads; i++)
             {
