@@ -1,6 +1,6 @@
 # ScientiaMobile WURFL Microservice Client for C#/dotNET Framework
 
-C# implementation of the WPC Client api.
+C# implementation of the WM Client api.
 Requires .NET framework 4.5.2 or above
 
 the Example project contains an example api usage for a console application :
@@ -167,7 +167,7 @@ namespace Example
 }
 ```
 
-Alternatively, if code is running inside a web application that provides a HttpRequest instance, you can initialize WPC client inside - for example, in the global.asax file 
+Alternatively, if code is running inside a web application that provides a HttpRequest instance, you can initialize WM client inside - for example, in the global.asax file 
 
 ```
 protected void Application_Start()
