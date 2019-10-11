@@ -1,10 +1,15 @@
 # ScientiaMobile WURFL Microservice Client for C#/dotNET Framework
 
-C# implementation of the WM Client api.
-Requires .NET framework 4.5.2 or above
+WURFL Microservice (by ScientiaMobile, Inc.) is a mobile device detection service that can quickly and accurately detect over 500 capabilities of visiting devices. It can differentiate between portable mobile devices, desktop devices, SmartTVs and any other types of devices that have a web browser.
+
+This is the C#/dotNET Client API for accessing the WURFL Microservice. The API is released under Open-Source and can be integrated with other open-source or proprietary code. In order to operate, it requires access to a running instance of the WURFL Microservice product, such as:
+
+- WURFL Microservice for Docker: https://www.scientiamobile.com/products/wurfl-microservice-docker-detect-device/
+
+- WURFL Microservice for AWS: https://www.scientiamobile.com/products/wurfl-device-detection-microservice-aws/ 
 
 the Example project contains an example api usage for a console application :
-
+(Requires .NET framework 4.5.2 or above)
 
 ```
 using System;
