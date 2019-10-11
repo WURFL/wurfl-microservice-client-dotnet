@@ -1,4 +1,4 @@
-# ScientiaMobile WURFL Microservice Client for C#/dotNET
+# ScientiaMobile WURFL Microservice Client for C#/dotNET Framework
 
 C# implementation of the WPC Client api.
 Requires .NET framework 4.5.2 or above
