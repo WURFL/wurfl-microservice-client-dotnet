@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>WMClient</id>
+        <version>2.0.1</version>
+        <title>WURFL Microservice client API for .NET</title>
+        <authors>ScientiaMobile,Inc.</authors>
+        <owners>ScientiaMobile,Inc.</owners>
+	<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+        <description>WURFL by Scientia Mobile. The .NET client API for WURFL Microservice.</description>
+        <releaseNotes>WURFL Microservice client API - Initial release</releaseNotes>
+        <copyright>ScientiaMobile, Inc. 2019</copyright>
+        <tags>Mobile Phone ASP.NET WURFL Browser DDR Device Detection Data Microservice</tags>
+    </metadata>
+    <files>
+        <file src="Content\App_Readme\Readme.txt" target="Content\App_Readme\Readme.txt" />
+        <file src="..\WmClient\bin\Release\WmClient.dll" target="lib\WmClient.dll" />
+        <file src="..\WmClient\bin\Release\WmClient.pdb" target="lib\WmClient.pdb" />
+    </files>
+</package>
