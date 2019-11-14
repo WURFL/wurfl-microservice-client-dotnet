@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>WURFL_Microservice_client</id>
+        <id>WURFL_Microservice_Client</id>
         <version>2.0.1</version>
         <title>WURFL Microservice client API for .NET</title>
         <authors>ScientiaMobile,Inc.</authors>
