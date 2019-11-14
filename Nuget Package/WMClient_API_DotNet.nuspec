@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata>
-        <id>WMClient</id>
+        <id>WURFL_Microservice_client</id>
         <version>2.0.1</version>
         <title>WURFL Microservice client API for .NET</title>
         <authors>ScientiaMobile,Inc.</authors>
         <owners>ScientiaMobile,Inc.</owners>
-	<license type="expression">Apache-2.0</license>
+        <icon>wurfl.png</icon>
+        <license type="expression">Apache-2.0</license>
         <description>The official .NET  WURFL Microservice client API allows you to query the WURFL database with no need to host and update the database itself in your applications and on your servers. The speed of the client API is comparable to the speed of a local API (such as "WURFL OnSite"). 
-		The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile) or a Virtual Machine (AMI, VM instances and such) obtainable from the marketplaces of major Cloud infrastructure providers such as: AWS, Azure and Google Cloud Platform.</description>
+         The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile) or a Virtual Machine (AMI, VM instances and such) obtainable from the marketplaces of major Cloud infrastructure providers such as: AWS, Azure and Google Cloud Platform.</description>
         <releaseNotes>WURFL Microservice client API - Initial release</releaseNotes>
         <copyright>ScientiaMobile, Inc. 2019</copyright>
         <tags>Mobile Phone ASP.NET WURFL Browser DDR Device Detection Data Microservice</tags>
