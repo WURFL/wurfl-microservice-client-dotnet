@@ -2,15 +2,22 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>WURFL_Microservice_Client</id>
-        <version>2.0.1</version>
+        <version>2.0.2</version>
         <title>WURFL Microservice client API for .NET</title>
         <authors>ScientiaMobile,Inc.</authors>
         <owners>ScientiaMobile,Inc.</owners>
         <iconUrl>https://web.wurfl.io/assets/img/wurfl.png</iconUrl>
+        <projectUrl>https://docs.scientiamobile.com/documentation/wurfl-microservice/docker-getting-started</projectUrl>
+        <repository type="git" url="https://github.com/WURFL/wurfl-microservice-client-dotnet.git" branch="master" />
         <license type="expression">Apache-2.0</license>
         <description>The official .NET  WURFL Microservice client API allows you to query the WURFL database with no need to host and update the database itself in your applications and on your servers. The speed of the client API is comparable to the speed of a local API (such as "WURFL OnSite"). 
-         The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile) or a Virtual Machine (AMI, VM instances and such) obtainable from the marketplaces of major Cloud infrastructure providers such as: AWS, Azure and Google Cloud Platform.</description>
-        <releaseNotes>WURFL Microservice client API - Initial release</releaseNotes>
+
+The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile, https://www.scientiamobile.com/products/wurfl-microservice-docker-detect-device/) or a Virtual Machine (AMI, VM instances and such:
+https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of major Cloud infrastructure providers, such as: AWS, Azure and Google Cloud Platform).</description>
+        <releaseNotes>
+          2.0.2 - Better packaging and info for NuGet release
+          2.0.1 - Initial release
+        </releaseNotes>
         <copyright>ScientiaMobile, Inc. 2019</copyright>
         <tags>Mobile Phone ASP.NET WURFL Browser DDR Device Detection Data Microservice</tags>
     </metadata>
