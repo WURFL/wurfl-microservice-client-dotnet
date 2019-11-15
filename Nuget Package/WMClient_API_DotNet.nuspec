@@ -13,7 +13,7 @@
         <description>The official .NET  WURFL Microservice client API allows you to query the WURFL database with no need to host and update the database itself in your applications and on your servers. The speed of the client API is comparable to the speed of a local API (such as "WURFL OnSite"). 
 
 The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile, https://www.scientiamobile.com/products/wurfl-microservice-docker-detect-device/) or a Virtual Machine (AMI, VM instances and such:
-https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of major Cloud infrastructure providers, such as: AWS, Azure and Google Cloud Platform)..</description>
+https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of major Cloud infrastructure providers, such as: AWS, Azure and Google Cloud Platform).</description>
         <releaseNotes>
           2.0.2 - Better packaging and info for NuGet release
           2.0.1 - Initial release
