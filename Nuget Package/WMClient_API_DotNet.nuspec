@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>WURFL_Microservice_Client</id>
+        <version>2.0.1</version>
+        <title>WURFL Microservice client API for .NET</title>
+        <authors>ScientiaMobile,Inc.</authors>
+        <owners>ScientiaMobile,Inc.</owners>
+        <iconUrl>https://web.wurfl.io/assets/img/wurfl.png</iconUrl>
+        <license type="expression">Apache-2.0</license>
+        <description>The official .NET  WURFL Microservice client API allows you to query the WURFL database with no need to host and update the database itself in your applications and on your servers. The speed of the client API is comparable to the speed of a local API (such as "WURFL OnSite"). 
+         The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile) or a Virtual Machine (AMI, VM instances and such) obtainable from the marketplaces of major Cloud infrastructure providers such as: AWS, Azure and Google Cloud Platform.</description>
+        <releaseNotes>WURFL Microservice client API - Initial release</releaseNotes>
+        <copyright>ScientiaMobile, Inc. 2019</copyright>
+        <tags>Mobile Phone ASP.NET WURFL Browser DDR Device Detection Data Microservice</tags>
+    </metadata>
+    <files>
+        <file src="Content\App_Readme\Readme.txt" target="Content\App_Readme\Readme.txt" />
+        <file src="..\WmClient\bin\Release\WmClient.dll" target="lib\WmClient.dll" />
+        <file src="..\WmClient\bin\Release\WmClient.pdb" target="lib\WmClient.pdb" />
+        <file src="wurfl.png" target="" />
+
+    </files>
+</package>
