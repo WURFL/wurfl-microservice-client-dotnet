@@ -445,6 +445,7 @@ namespace Wmclient
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        /// Note that the UNIT_TEST cofiguration must be used for .NET framework only and NOT for .NET Core framework
 #if UNIT_TESTS
         public JSONDeviceData LookupRequest(HttpRequestBase request)
 #else
