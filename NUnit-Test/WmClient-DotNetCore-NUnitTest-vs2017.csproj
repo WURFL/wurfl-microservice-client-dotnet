@@ -28,6 +28,7 @@
   
    <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PackageId>NUnit-Test</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
