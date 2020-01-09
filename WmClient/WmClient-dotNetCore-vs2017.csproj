@@ -19,6 +19,7 @@
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;UNIT_TEST;NETCORE_2_2</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
