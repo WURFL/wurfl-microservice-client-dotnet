@@ -15,13 +15,16 @@ limitations under the License.
 */
 using System;
 using System.Net.Http;
-using System.Web;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Security.Cryptography;
-using System.IO;
-using System.Text;
 using System.Net.Http.Headers;
+
+#if NETCORE_2_2
+    using Microsoft.AspNetCore.Http;
+#else
+    using System.Web;
+#endif
+
 
 namespace Wmclient
 {
@@ -442,6 +445,7 @@ namespace Wmclient
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        /// Note that the UNIT_TEST cofiguration must be used for .NET framework only and NOT for .NET Core framework
 #if UNIT_TESTS
         public JSONDeviceData LookupRequest(HttpRequestBase request)
 #else
@@ -452,7 +456,11 @@ namespace Wmclient
             JSONDeviceData device = null;
 
             // First, do a cache lookup
+#if NETCORE_2_2
+            var cacheKey = GetUserAgentCacheKey(request.Headers); // here it's a IHeaderDictionary
+#else
             var cacheKey = GetUserAgentCacheKey(request.Headers);
+#endif
             if (uaCache != null)
             {
                 device = uaCache.GetEntry(cacheKey);
@@ -631,7 +639,7 @@ namespace Wmclient
         /// <returns></returns>
         public string GetApiVersion()
         {
-            return "2.0.2";
+            return "2.0.3";
         }
 
         /// <summary>
@@ -722,7 +730,12 @@ namespace Wmclient
             }
         }
 
-        private string GetUserAgentCacheKey(NameValueCollection headers)
+
+        #if NETCORE_2_2
+        private string GetUserAgentCacheKey(IHeaderDictionary headers)
+#else
+        private string GetUserAgentCacheKey(NameValueCollection headers)    
+#endif
         {
             string key = "";
 

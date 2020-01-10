@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>WURFL_Microservice_Client</id>
+        <id>WURFL_Microservice_Client.Core</id>
         <version>2.0.3</version>
-        <title>WURFL Microservice client API for .NET</title>
+        <title>WURFL Microservice client API for .NET Core</title>
         <authors>ScientiaMobile,Inc.</authors>
         <owners>ScientiaMobile,Inc.</owners>
         <iconUrl>https://web.wurfl.io/assets/img/wurfl.png</iconUrl>
         <projectUrl>https://docs.scientiamobile.com/documentation/wurfl-microservice/docker-getting-started</projectUrl>
         <repository type="git" url="https://github.com/WURFL/wurfl-microservice-client-dotnet.git" branch="master" />
         <license type="expression">Apache-2.0</license>
-        <description>The official .NET  WURFL Microservice client API allows you to query the WURFL database with no need to host and update the database itself in your applications and on your servers. The speed of the client API is comparable to the speed of a local API (such as "WURFL OnSite"). 
+        <description>The official .NET Core  WURFL Microservice client API allows you to query the WURFL database with no need to host and update the database itself in your applications and on your servers. The speed of the client API is comparable to the speed of a local API (such as "WURFL OnSite"). 
 
 The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile, https://www.scientiamobile.com/products/wurfl-microservice-docker-detect-device/) or a Virtual Machine (AMI, VM instances and such:
 https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of major Cloud infrastructure providers, such as: AWS, Azure and Google Cloud Platform).</description>
         <releaseNotes>
-          2.0.3 - Added support for .NET Core framework 2.2.0 (not included in this package)
+          2.0.3 - Added support for .NET Core framework 2.2.0
           2.0.2 - Better packaging and info for NuGet release
           2.0.1 - Initial release
         </releaseNotes>
@@ -24,8 +24,8 @@ https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of majo
     </metadata>
     <files>
         <file src="Content\App_Readme\Readme.txt" target="Content\App_Readme\Readme.txt" />
-        <file src="..\WmClient\bin\Release\WmClient.dll" target="lib\WmClient.dll" />
-        <file src="..\WmClient\bin\Release\WmClient.pdb" target="lib\WmClient.pdb" />
+        <file src="..\WmClient\bin\Release\netcoreapp2.2\WmClient-dotNetCore-vs2017.dll" target="lib\WmClient.dll" />
+        <file src="..\WmClient\bin\Release\netcoreapp2.2\WmClient-dotNetCore-vs2017.pdb" target="lib\WmClient.pdb" />
         <file src="wurfl.png" target="" />
 
     </files>
