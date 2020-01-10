@@ -3,7 +3,7 @@
     <metadata>
         <id>WURFL_Microservice_Client.Core</id>
         <version>2.0.3</version>
-        <title>WURFL Microservice client API for .NET</title>
+        <title>WURFL Microservice client API for .NET Core</title>
         <authors>ScientiaMobile,Inc.</authors>
         <owners>ScientiaMobile,Inc.</owners>
         <iconUrl>https://web.wurfl.io/assets/img/wurfl.png</iconUrl>
