@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="WmClient">
+      <HintPath>..\WmClient\bin\Debug\netcoreapp2.2\WmClient.dll</HintPath>
+    </Reference>
     <Reference Include="WmClient-dotNetCore-vs2017">
       <HintPath>..\WmClient\bin\Debug\netcoreapp2.2\WmClient-dotNetCore-vs2017.dll</HintPath>
     </Reference>
