@@ -639,7 +639,7 @@ namespace Wmclient
         /// <returns></returns>
         public string GetApiVersion()
         {
-            return "2.0.4";
+            return "2.0.5";
         }
 
         /// <summary>

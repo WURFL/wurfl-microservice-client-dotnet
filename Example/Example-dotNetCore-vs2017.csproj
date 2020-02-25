@@ -12,14 +12,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="WURFL_Microservice_Client.Core" Version="2.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="WmClient">
       <HintPath>..\WmClient\bin\Debug\netcoreapp2.2\WmClient.dll</HintPath>
-    </Reference>
-    <Reference Include="WmClient-dotNetCore-vs2017">
-      <HintPath>..\WmClient\bin\Debug\netcoreapp2.2\WmClient-dotNetCore-vs2017.dll</HintPath>
     </Reference>
   </ItemGroup>
 
