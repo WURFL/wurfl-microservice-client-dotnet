@@ -92,7 +92,7 @@ namespace NUnit_Test
                 JSONDeviceData device = client.LookupUserAgent(ua);
                 Assert.NotNull(device);
                 int dcount = device.Capabilities.Count;
-                Assert.True(dcount >= 43); // sum of caps, vcaps and wurfl_id
+                Assert.True(dcount >= 40); // sum of caps, vcaps and wurfl_id
                 Assert.AreEqual(device.Capabilities["model_name"], "SM-G950F");
                 Assert.AreEqual("false", device.Capabilities["is_app"]);
                 Assert.AreEqual("false", device.Capabilities["is_app_webview"]);
@@ -106,7 +106,7 @@ namespace NUnit_Test
         [Test]
         public void TestLookupUserAgentWithSpecificCaps()
         {
-            string[] reqCaps = { "brand_name", "model_name", "is_wireless_device", "pointing_method", "is_android", "is_ios", "is_app" };
+            string[] reqCaps = { "brand_name", "model_name", "form_factor", "is_mobile", "is_android", "is_ios", "is_app" };
 
             WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
             try
@@ -118,7 +118,7 @@ namespace NUnit_Test
                 Assert.NotNull(device.Capabilities);
                 Assert.AreEqual("Nintendo", device.Capabilities["brand_name"]);
                 Assert.AreEqual("Switch", device.Capabilities["model_name"]);
-                Assert.AreEqual("touchscreen", device.Capabilities["pointing_method"]);
+                Assert.AreEqual("true", device.Capabilities["is_mobile"]);
                 Assert.AreEqual(8, device.Capabilities.Count);
             }
             finally
@@ -136,10 +136,10 @@ namespace NUnit_Test
                 JSONDeviceData device = conn.LookupUserAgent("");
                 Assert.NotNull(device);
                 var did = device.Capabilities;
-                Assert.Null(did);
+                Assert.NotNull(did);
                 Assert.NotNull(device.APIVersion);
-                Assert.NotNull(device.Error);
-                Assert.True(device.Error.Contains("No User-Agent"));
+                Assert.True(device.Error.Length == 0);
+                Assert.AreEqual("generic", device.Capabilities["wurfl_id"]);
             }
             finally
             {
@@ -156,9 +156,10 @@ namespace NUnit_Test
                 JSONDeviceData device = conn.LookupUserAgent(null);
                 Assert.NotNull(device);
                 var did = device.Capabilities;
-                Assert.Null(did);
+                Assert.NotNull(did);
                 Assert.NotNull(device.Error);
-                Assert.True(device.Error.Contains("No User-Agent"));
+                // From v 2.1.0 server returns a generic device when queried qith null/empty User-Agent
+                Assert.AreEqual("generic", device.Capabilities["wurfl_id"]);
 
             }
             finally
@@ -179,8 +180,8 @@ namespace NUnit_Test
                 var did = jsonData.Capabilities;
                 Assert.NotNull(did);
                 // num caps + num vcaps + wurfl id 
-                Assert.True(did.Count >= 43);
-                Assert.AreEqual("1", did["xhtml_support_level"]);
+                Assert.True(did.Count >= 40);
+                Assert.AreEqual("false", did["is_android"]);
                 Assert.AreEqual("128", did["resolution_width"]);
             }
             finally
@@ -195,8 +196,8 @@ namespace NUnit_Test
             WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
             try
             {
-                string[] reqCaps = { "brand_name", "is_wireless_device" };
-                string[] reqvCaps = { "is_app", "is_app_webview" };
+                String[] reqCaps = { "brand_name", "is_smarttv" };
+                String[] reqvCaps = { "is_app", "is_app_webview" };
                 client.SetRequestedStaticCapabilities(reqCaps);
                 client.SetRequestedVirtualCapabilities(reqvCaps);
                 Assert.NotNull(client);
@@ -205,7 +206,7 @@ namespace NUnit_Test
                 var did = jsonData.Capabilities;
                 Assert.NotNull(did);
                 Assert.AreEqual("Opera", did["brand_name"]);
-                Assert.AreEqual("true", did["is_wireless_device"]);
+                Assert.AreEqual("false", did["is_app"]);
                 Assert.AreEqual(5, did.Count);
             }
             finally
@@ -309,9 +310,9 @@ namespace NUnit_Test
                 Assert.NotNull(jsonData);
                 var did = jsonData.Capabilities;
                 Assert.NotNull(did);
-                Assert.True(did.Count >= 43);
-                Assert.AreEqual("Stock Browser", did["advertised_app_name"]);
-                Assert.AreEqual("Nintendo Browser", did["advertised_browser"]);
+                Assert.True(did.Count >= 40);
+                Assert.AreEqual("Smart-TV", did["form_factor"]);
+                
                 Assert.AreEqual("false", did["is_app"]);
                 Assert.AreEqual("false", did["is_app_webview"]);
                 Assert.AreEqual("Nintendo", did["advertised_device_os"]);
@@ -319,7 +320,7 @@ namespace NUnit_Test
                 Assert.AreEqual("nintendo_switch_ver1", did["wurfl_id"]);
 
                 // Now set a cap filter
-                string[] reqCaps = { "advertised_app_name", "advertised_browser", "is_app", "complete_device_name", "advertised_device_os", "brand_name" };
+                string[] reqCaps = { "form_factor", "is_mobile", "is_app", "complete_device_name", "advertised_device_os", "brand_name" };
                 client.SetRequestedCapabilities(reqCaps);
                 jsonData = client.LookupRequest(mockHttpRequest.Object);
                 did = jsonData.Capabilities;
@@ -349,7 +350,7 @@ namespace NUnit_Test
         public void TestLookupRequestWithSpecificCapsAndNoHeaders()
         {
             WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
-            var excCatched = false;
+            
             try
             {
                 string[] reqCaps = { "brand_name", "is_wireless_device", "pointing_method", "model_name" };
@@ -361,19 +362,19 @@ namespace NUnit_Test
                 NameValueCollection requestHeaders = new NameValueCollection { };
                 mockHttpRequest.SetupGet(x => x.Headers).Returns(requestHeaders);
                 JSONDeviceData jsonData = client.LookupRequest(mockHttpRequest.Object);
+                // From version 2.1.0 on, WURFL Microservice server returns "generic" device and not
+                // an error in case of empty user-agent or headers.
+                Assert.AreEqual("generic", jsonData.Capabilities["wurfl_id"]);
             }
             catch (WmException e)
             {
-                excCatched = true;
                 Assert.NotNull(e.Message);
                 Assert.True(e.Message.Length > 0);
-                Assert.True(e.Message.Contains("No User-Agent"));
             }
             finally
             {
                 client.DestroyConnection();
             }
-            Assert.True(excCatched);
         }
 
         [Test]
@@ -413,7 +414,7 @@ namespace NUnit_Test
             WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
             try
             {
-                string[] reqCaps = { "advertised_app_name", "advertised_browser", "is_app", "complete_device_name", "advertised_device_os",
+                string[] reqCaps = { "is_robot", "is_smartphone", "is_app", "complete_device_name", "advertised_device_os",
             "advertised_device_os_version", "form_factor", "is_app_webview" };
                 Assert.NotNull(client);
                 client.SetRequestedCapabilities(reqCaps);
@@ -423,8 +424,8 @@ namespace NUnit_Test
                 var did = jsonData.Capabilities;
                 Assert.NotNull(did);
                 Assert.AreEqual(9, did.Count);
-                Assert.AreEqual("Stock Browser", did["advertised_app_name"]);
-                Assert.AreEqual("Nintendo Browser", did["advertised_browser"]);
+                Assert.AreEqual("false", did["is_robot"]);
+                Assert.AreEqual("false", did["is_smartphone"]);
                 Assert.AreEqual("false", did["is_app"]);
                 Assert.AreEqual("false", did["is_app_webview"]);
                 Assert.AreEqual("Nintendo", did["advertised_device_os"]);
@@ -473,7 +474,7 @@ namespace NUnit_Test
             Assert.NotNull(client);
             Assert.True(client.HasStaticCapability("brand_name"));
             Assert.True(client.HasStaticCapability("model_name"));
-            Assert.True(client.HasStaticCapability("is_wireless_device"));
+            Assert.True(client.HasStaticCapability("is_smarttv"));
             // this is a virtual capability, so it shouldn't be returned
             Assert.False(client.HasStaticCapability("is_app"));
         }
@@ -496,7 +497,7 @@ namespace NUnit_Test
             client.SetRequestedVirtualCapabilities(null);
             // Resetting all requested caps arrays makes server return ALL available caps
             d = client.LookupUserAgent(ua);
-            Assert.True(d.Capabilities.Count >= 43);
+            Assert.True(d.Capabilities.Count >= 40);
 
             bool exc = false;
             try
@@ -585,7 +586,7 @@ namespace NUnit_Test
                 Assert.NotNull(did);
 
                 Assert.AreEqual("Samsung", did["brand_name"]); // UA has been overridden by X-UCBrowser-Device-UA
-                Assert.AreEqual("touchscreen", did["pointing_method"]);
+                Assert.AreEqual("true", did["is_mobile"]);
                 Assert.True(did.Count >= 40);
 
                 var cSize = client.GetActualCacheSizes();
