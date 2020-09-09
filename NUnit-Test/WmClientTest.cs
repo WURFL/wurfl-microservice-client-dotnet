@@ -16,6 +16,7 @@ limitations under the License.
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading;
 using System.Web;
@@ -347,6 +348,110 @@ namespace NUnit_Test
         }
 
         [Test]
+        public void TestLookupHeadersOK()
+        {
+            var ua = "Mozilla/5.0 (Nintendo Switch; WebApplet) AppleWebKit/601.6 (KHTML, like Gecko) NF/4.0.0.5.9 NintendoBrowser/5.1.0.13341";
+            IDictionary<string,string> requestHeaders = new Dictionary<string,string>()
+            {
+                { "User-agent", ua},
+                { "content-Type", "gzip, deflate"},
+                { "Accept-Encoding", "application/json"}
+            };
+            
+
+            WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
+            client.SetCacheSize(1000);
+            try
+            {
+                Assert.NotNull(client);
+                JSONDeviceData jsonData = client.LookupHeaders(requestHeaders);
+                Assert.NotNull(jsonData);
+                var did = jsonData.Capabilities;
+                Assert.NotNull(did);
+                Assert.True(did.Count >= 40);
+                Assert.AreEqual("Smart-TV", did["form_factor"]);
+
+                Assert.AreEqual("false", did["is_app"]);
+                Assert.AreEqual("false", did["is_app_webview"]);
+                Assert.AreEqual("Nintendo", did["advertised_device_os"]);
+                Assert.AreEqual("Nintendo Switch", did["complete_device_name"]);
+                Assert.AreEqual("nintendo_switch_ver1", did["wurfl_id"]);
+
+                // Now set a cap filter
+                string[] reqCaps = { "form_factor", "is_mobile", "is_app", "complete_device_name", "advertised_device_os", "brand_name" };
+                client.SetRequestedCapabilities(reqCaps);
+                jsonData = client.LookupHeaders(requestHeaders);
+                did = jsonData.Capabilities;
+                Assert.NotNull(did);
+                Assert.AreEqual(7, did.Count);
+
+                // Now, lets try with mixed case headers
+                requestHeaders = new Dictionary<string,string>()
+                {
+                { "usEr-AgeNt", ua},
+                { "CoNtent-TYpe", "gzip, deflate"},
+                { "Accept-ENCoding", "application/json"}
+            };
+
+                jsonData = client.LookupHeaders(requestHeaders);
+                did = jsonData.Capabilities;
+                Assert.NotNull(did);
+            
+                int[] cacheSizes = client.GetActualCacheSizes();
+                // Cache has been hit even if header names have a different case
+                Assert.AreEqual(1, cacheSizes[1]);
+            }
+            finally
+            {
+                client.DestroyConnection();
+            }
+        }
+
+        [Test]
+        public void TestLookupHeadersWithoutHeders()
+        {
+            WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
+            try
+            {
+                Assert.NotNull(client);
+                JSONDeviceData jsonData = client.LookupHeaders(null);
+                Assert.NotNull(jsonData);
+                Assert.AreEqual("generic", jsonData.Capabilities["wurfl_id"]);
+            } 
+            catch(WmException e)
+            {
+                Assert.Fail(e.Message);
+            }
+            finally
+            {
+                client.DestroyConnection();
+            }
+        }
+
+        [Test]
+        public void TestLookupHeadersWithEmptyHeaders()
+        {
+            WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
+            try
+            {
+                Assert.NotNull(client);
+                JSONDeviceData jsonData = client.LookupHeaders(new Dictionary<string,string>());
+                Assert.NotNull(jsonData);
+                Assert.AreEqual("generic", jsonData.Capabilities["wurfl_id"]);
+            }
+            catch (WmException e)
+            {
+                Assert.NotNull(e.Message);
+                Assert.True(e.Message.Length > 0);
+                Assert.True(e.Message.Contains("Headers dictionary cannot be null"));
+            }
+            finally
+            {
+                client.DestroyConnection();
+            }
+        }
+
+        [Test]
         public void TestLookupRequestWithSpecificCapsAndNoHeaders()
         {
             WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
@@ -396,7 +501,7 @@ namespace NUnit_Test
                 excCatched = true;
                 Assert.NotNull(e.Message);
                 Assert.True(e.Message.Length > 0);
-                Assert.True(e.Message.Contains("No User-Agent"));
+                Assert.True(e.Message.Contains("Headers dictionary cannot be null"));
             }
             finally
             {
