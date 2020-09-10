@@ -525,6 +525,97 @@ namespace Wmclient
             }
         }
 
+        public JSONDeviceData LookupHeaders(IDictionary<String,String> headers)
+        {
+            JSONDeviceData device = null;
+
+            // Before we begin, let's handle lowercase key headers
+            IDictionary<string, string> lowercaseHeaders = ToLowercaseHeaders(headers);
+            
+            Request req = new Request();
+            if (lowercaseHeaders != null)
+            {
+                for (int i = 0; i < ImportantHeaders.Length; i++)
+                {
+                    String name = ImportantHeaders[i];
+                    String lowerKey = name.ToLower();
+                    if (lowercaseHeaders.ContainsKey(lowerKey))
+                    {
+                        String header = lowercaseHeaders[lowerKey];
+                        if (header != null && !"".Equals(header))
+                        {
+                            req.Lookup_headers.Add(name, header);
+                        }
+                    }
+                }
+            }
+
+            // Device, not found in cache, let's try a server lookup
+            addCapabilitiesToRequest(req);
+
+            // First, do a cache lookup
+            var cacheKey = GetHeadersCacheKey(req.Lookup_headers);
+            if (uaCache != null)
+            {
+                device = uaCache.GetEntry(cacheKey);
+                if (device != null)
+                {
+                    return device;
+                }
+            }
+
+            HttpResponseMessage response = null;
+            try
+            {
+                response = c.PostAsJsonAsync<Request>(createURL("/v2/lookuprequest/json"), req).Result;
+                if (response != null && response.IsSuccessStatusCode && response.Content != null)
+                {
+                    device = response.Content.ReadAsAsync<JSONDeviceData>().Result;
+                    if (device.Error != null && device.Error.Length > 0)
+                    {
+                        throw new WmException("Received error from WM server: " + device.Error);
+                    }
+                }
+
+                // Check if cache must be cleaned before adding device to cache
+                ClearCachesIfNeeded(device.Ltime);
+                SafePutDevice(uaCache, cacheKey, device);
+
+                return device;
+
+            }
+            catch (Exception e)
+            {
+                if (e is WmException)
+                {
+                    throw e;
+                }
+                throw new WmException("Error retrieving device data: " + e.Message, e);
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    response.Dispose();
+                }
+            }
+        }
+
+        private IDictionary<string, string> ToLowercaseHeaders(IDictionary<string, string> headers)
+        {
+            IDictionary<string, string> lowerKeysMap = new Dictionary<string,string>();
+            if (headers == null)
+            {
+                return lowerKeysMap;
+            }
+
+            foreach (String c in headers.Keys)
+            {
+                lowerKeysMap.Add(c.ToLower(), headers[c]);
+            }
+            return lowerKeysMap;
+        }
+
         /// <summary>
         /// Retrieves a list of all device manufacturers.
         /// Throws WmClientException in case any client related problem occurs.
@@ -639,7 +730,7 @@ namespace Wmclient
         /// <returns></returns>
         public string GetApiVersion()
         {
-            return "2.0.4";
+            return "2.1.0";
         }
 
         /// <summary>
@@ -741,7 +832,7 @@ namespace Wmclient
 
             if (headers == null)
             {
-                throw new WmException("No User-Agent provided");
+                throw new WmException("Headers dictionary cannot be null");
             }
 
             // Using important headers array preserves header name order
@@ -751,6 +842,30 @@ namespace Wmclient
                 if (key != null)
                 {
                     key += headers[h];
+                }
+            }
+            return key;
+        }
+
+        private string GetHeadersCacheKey(IDictionary<string,string> headers)
+        {
+            string key = "";
+
+            if (headers == null)
+            {
+                throw new WmException("Headers dictionary cannot be null");
+            }
+
+            // Using important headers array preserves header name order
+            foreach (string h in importantHeaders)
+            {
+                if (headers.ContainsKey(h))
+                {
+                    var hkey = headers[h];
+                    if (key != null)
+                    {
+                        key += headers[h];
+                    }
                 }
             }
             return key;

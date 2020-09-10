@@ -14,7 +14,8 @@
 
 The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile, https://www.scientiamobile.com/products/wurfl-microservice-docker-detect-device/) or a Virtual Machine (AMI, VM instances and such:
 https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of major Cloud infrastructure providers, such as: AWS, Azure and Google Cloud Platform).</description>
-        <releaseNotes>  
+        <releaseNotes>
+          2.1.0 - Fix: added LookupHeaders method in client. Improved tests.
           2.0.4 - Fix: naming issue in .NET Core package
           2.0.3 - Added support for .NET Core framework 2.2.0 (not included in this package)
           2.0.2 - Better packaging and info for NuGet release

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,15 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="WmClient">
-      <HintPath>..\WmClient\bin\Debug\netcoreapp2.2\WmClient.dll</HintPath>
-    </Reference>
-    <Reference Include="WmClient-dotNetCore-vs2017">
-      <HintPath>..\WmClient\bin\Debug\netcoreapp2.2\WmClient-dotNetCore-vs2017.dll</HintPath>
-    </Reference>
+    <PackageReference Include="WURFL_Microservice_Client.Core" Version="2.1.0" />
   </ItemGroup>
 
 </Project>
