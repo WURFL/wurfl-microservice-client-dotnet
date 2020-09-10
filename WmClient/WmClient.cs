@@ -444,7 +444,7 @@ namespace Wmclient
         /// Throws WmClientException in case any client related problem occurs.
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>A JSONDeviceData object holding all the device detection information or the requested one in case one of the SetRequired*Capabilities method has been used on the client</returns>
         /// Note that the UNIT_TEST cofiguration must be used for .NET framework only and NOT for .NET Core framework
 #if UNIT_TESTS
         public JSONDeviceData LookupRequest(HttpRequestBase request)
@@ -525,6 +525,15 @@ namespace Wmclient
             }
         }
 
+        /// <summary>
+        /// Searches WURFL device data using the given header dictionary for detection.
+        /// Header names used as dictionary keys are treated as case insensitive so that
+        /// "user-Agent" and "User-Agent" are considered equal.
+        /// Throws WmClientException in case any client related problem occurs.
+        /// </summary>
+        /// <param name="headers"></param>
+        /// <returns>A JSONDeviceData object holding all the device detection information or the requested one in case one of the SetRequired*Capabilities method has been used on the client</returns>
+        /// <exception cref="WmException"></exception>
         public JSONDeviceData LookupHeaders(IDictionary<String,String> headers)
         {
             JSONDeviceData device = null;
