@@ -771,34 +771,41 @@ namespace NUnit_Test
             WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
             HiPerformanceTimer timer = new HiPerformanceTimer();
             var userAgentList = TestData.CreateTestUserAgentList();
-            timer.Start();
-            foreach(var ua in userAgentList)
+            try
             {
-                client.LookupUserAgent(ua);
-            }
-            timer.Stop();
-            // get the total detection time in nanoseconds
-            var totalDetectionTime = timer.Duration(true);
+                timer.Start();
+                foreach (var ua in userAgentList)
+                {
+                    client.LookupUserAgent(ua);
+                }
+                timer.Stop();
+                // get the total detection time in nanoseconds
+                var totalDetectionTime = timer.Duration(true);
 
-            // now enable the cache and fill it
-            client.SetCacheSize(10000);
-            foreach (var ua in userAgentList)
-            {
-                client.LookupUserAgent(ua);
-            }
+                // now enable the cache and fill it
+                client.SetCacheSize(10000);
+                foreach (var ua in userAgentList)
+                {
+                    client.LookupUserAgent(ua);
+                }
 
-            // Now measure cache usage time
-            timer.Start();
-            foreach (var ua in userAgentList)
-            {
-                client.LookupUserAgent(ua);
+                // Now measure cache usage time
+                timer.Start();
+                foreach (var ua in userAgentList)
+                {
+                    client.LookupUserAgent(ua);
+                }
+                timer.Stop();
+                var totalCacheUsageTime = timer.Duration(true);
+                var avgDetectionTime = (double)totalDetectionTime / (double)userAgentList.Length;
+                var avgCacheTime = (double)totalCacheUsageTime / (double)userAgentList.Length;
+                // Test passes only if cache performance is at least one order of magnitude faster than detection
+                Assert.True(avgDetectionTime > avgCacheTime * 10);
             }
-            timer.Stop();
-            var totalCacheUsageTime = timer.Duration(true);
-            var avgDetectionTime = (double) totalDetectionTime / (double) userAgentList.Length;
-            var avgCacheTime = (double) totalCacheUsageTime / (double) userAgentList.Length;
-            // Test passes only if cache performance is at least one order of magnitude faster than detection
-            Assert.True(avgDetectionTime > avgCacheTime * 10);
+            finally
+            {
+                client.DestroyConnection();
+            }
 
         }
     }
