@@ -795,8 +795,8 @@ namespace NUnit_Test
             }
             timer.Stop();
             var totalCacheUsageTime = timer.Duration(true);
-            var avgDetectionTime = totalDetectionTime / userAgentList.Length;
-            var avgCacheTime = totalCacheUsageTime / userAgentList.Length;
+            var avgDetectionTime = (double) totalDetectionTime / (double) userAgentList.Length;
+            var avgCacheTime = (double) totalCacheUsageTime / (double) userAgentList.Length;
             // Test passes only if cache performance is at least one order of magnitude faster than detection
             Assert.True(avgDetectionTime > avgCacheTime * 10);
 
