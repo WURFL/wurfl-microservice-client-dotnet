@@ -10,10 +10,14 @@
         <projectUrl>https://docs.scientiamobile.com/documentation/wurfl-microservice/docker-getting-started</projectUrl>
         <repository type="git" url="https://github.com/WURFL/wurfl-microservice-client-dotnet.git" branch="master" />
         <license type="expression">Apache-2.0</license>
-        <description>The official .NET  WURFL Microservice client API allows you to query the WURFL database with no need to host and update the database itself in your applications and on your servers. The speed of the client API is comparable to the speed of a local API (such as "WURFL OnSite"). 
+        <description>The official .NET  WURFL Microservice client API allows you to query the WURFL database with no need 
+	to host and update the database itself in your applications and on your servers. The speed of the client API is comparable to the speed of a local API 
+		(such as "WURFL OnSite"). 
 
-The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile, https://www.scientiamobile.com/products/wurfl-microservice-docker-detect-device/) or a Virtual Machine (AMI, VM instances and such:
-https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of major Cloud infrastructure providers, such as: AWS, Azure and Google Cloud Platform).</description>
+The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile, 
+https://www.scientiamobile.com/products/wurfl-microservice-docker-detect-device/) or a Virtual Machine (AMI, VM instances and such)  from a major Cloud infrastructure provider:
+		https://docs.scientiamobile.com/documentation/wurfl-microservice/azure-getting-started , 
+https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ , https://www.scientiamobile.com/products/wurfl-microservice-for-gcp/).</description>
         <releaseNotes>
 		  2.1.1 - Ehn: Added cache usage tests. Used HTTP headers in samlple app detection.
           2.1.0 - Fix: added LookupHeaders method in client. Improved tests.
