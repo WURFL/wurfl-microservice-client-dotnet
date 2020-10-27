@@ -205,3 +205,25 @@ public ActionResult MyControllerMethod()
 }
 ```
 
+**You can also use all HTTP headers to perform a device detection:**
+
+```
+  var headers = new Dictionary<String, String>();
+                    headers.Add("Content-Type", "application/json");
+                    headers.Add("Accept-Encoding", "gzip, deflate");
+                    headers.Add("Accept-Language", "en");
+                    headers.Add("Referer", "https://www.cram.com/flashcards/labor-and-delivery-questions-889210");
+                    headers.Add("User-Agent", "Opera/9.80 (Android; Opera Mini/51.0.2254/184.121; U; en) Presto/2.12.423 Version/12.16");
+                    headers.Add("X-Clacks-Overhead", "GNU ph");
+                    headers.Add("X-Forwarded-For", "110.54.224.195, 82.145.210.235");
+                    headers.Add("X-Operamini-Features", "advanced, camera, download, file_system, folding, httpping, pingback, routing, touch, viewport");
+                    headers.Add("X-Operamini-Phone", "Android #");
+                    headers.Add("X-Operamini-Phone-Ua", "Mozilla/5.0 (Linux; Android 8.1.0; SM-J610G Build/M1AJQ; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/69.0.3497.100 Mobile Safari/537.36");
+                    headers.Add("Accept", "text/html, application/xml;q=0.9, application/xhtml+xml, image/png, image/webp, image/jpeg, image/gif, image/x-xbitmap, */*;q=0.1");
+                    headers.Add("Device-Stock-Ua", "Mozilla/5.0 (Linux; Android 8.1.0; SM-J610G Build/M1AJQ; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/69.0.3497.100 Mobile Safari/537.36");
+                    headers.Add("Forwarded", "for=\"110.54.224.195:36350\"");
+
+                    // Perform a device detection calling WM server API passing the whole request headers
+                    JSONDeviceData device = client.LookupHeaders(headers);
+```
+
