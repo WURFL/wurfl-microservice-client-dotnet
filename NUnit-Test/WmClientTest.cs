@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+using HiPerfTiming;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -762,6 +763,50 @@ namespace NUnit_Test
             {
                 threads[i].Join();
             }
+        }
+
+        [Test]
+        public void TestCacheUsage()
+        {
+            WmClient client = WmClient.Create(serverProtocol, serverIP, serverPort, "");
+            HiPerformanceTimer timer = new HiPerformanceTimer();
+            var userAgentList = TestData.CreateTestUserAgentList();
+            try
+            {
+                timer.Start();
+                foreach (var ua in userAgentList)
+                {
+                    client.LookupUserAgent(ua);
+                }
+                timer.Stop();
+                // get the total detection time in nanoseconds
+                var totalDetectionTime = timer.Duration(true);
+
+                // now enable the cache and fill it
+                client.SetCacheSize(10000);
+                foreach (var ua in userAgentList)
+                {
+                    client.LookupUserAgent(ua);
+                }
+
+                // Now measure cache usage time
+                timer.Start();
+                foreach (var ua in userAgentList)
+                {
+                    client.LookupUserAgent(ua);
+                }
+                timer.Stop();
+                var totalCacheUsageTime = timer.Duration(true);
+                var avgDetectionTime = (double)totalDetectionTime / (double)userAgentList.Length;
+                var avgCacheTime = (double)totalCacheUsageTime / (double)userAgentList.Length;
+                // Test passes only if cache performance is at least one order of magnitude faster than detection
+                Assert.True(avgDetectionTime > avgCacheTime * 10);
+            }
+            finally
+            {
+                client.DestroyConnection();
+            }
+
         }
     }
 
