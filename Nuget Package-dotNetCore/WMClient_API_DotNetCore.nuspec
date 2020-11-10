@@ -15,7 +15,7 @@
 The Client API relies on the presence of a running instance of "WURFL Microservice", available as either a Docker image (obtainable from ScientiaMobile, https://www.scientiamobile.com/products/wurfl-microservice-docker-detect-device/) or a Virtual Machine (AMI, VM instances and such:
 https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of major Cloud infrastructure providers, such as: AWS, Azure and Google Cloud Platform).</description>
         <releaseNotes>
-          2.1.2 - Fix: Could not load file or assembly 'System.Net.Http.Formatting' error. 
+          2.1.2 - Fix: Could not load file or assembly 'System.Net.Http.Formatting' error.Set target framework to netcoreapp 3.1 
           2.1.1 - Ehn: Added cache usage tests. Used HTTP headers in samlple app detection.
           2.1.0 - Added LookupHeaders method to API. Improved tests to be executed on different server configurations.
           2.0.4 - Fix: naming issue in .NET Core package
@@ -24,7 +24,7 @@ https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of majo
           2.0.1 - Initial release
         </releaseNotes>
         <dependencies>
-            <group targetFramework=".NETCoreApp2.2">
+            <group targetFramework=".NETCoreApp3.1">
                 <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.7" exclude="Build,Analyzers" />
             </group>
         </dependencies>
@@ -33,8 +33,8 @@ https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of majo
     </metadata>
     <files>
         <file src="Content\App_Readme\Readme.txt" target="Content\App_Readme\Readme.txt" />
-        <file src="..\WmClient\bin\Release\netcoreapp2.2\WmClient.dll" target="lib\WmClient.dll" />
-        <file src="..\WmClient\bin\Release\netcoreapp2.2\WmClient.pdb" target="lib\WmClient.pdb" />
+        <file src="..\WmClient\bin\Release\netcoreapp3.1\WmClient.dll" target="lib\WmClient.dll" />
+        <file src="..\WmClient\bin\Release\netcoreapp3.1\WmClient.pdb" target="lib\WmClient.pdb" />
         <file src="wurfl.png" target="" />
 
     </files>
