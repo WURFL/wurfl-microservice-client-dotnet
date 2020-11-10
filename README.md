@@ -13,8 +13,10 @@ This is the C#/dotNET Client API for accessing the WURFL Microservice. The API i
 - WURFL Microservice for Google Cloud Platform: https://www.scientiamobile.com/products/wurfl-microservice-for-gcp/
 
 the Example project contains an example api usage for a console application :
-(Requires .NET framework 4.5.2 or above, or .NET Core framwork 2.2.0 or above)
+(Requires .NET framework 4.5.2 or above, or .NET Core framework 2.2.0 or above)
 WURFL Microservice client runs on .NET Core framework since version 2.0.3.
+
+**Note: From version 2.1.2 WM client targets .Net Core 3.1**
 
 ```
 using System;
