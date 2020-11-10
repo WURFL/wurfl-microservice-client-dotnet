@@ -27,7 +27,7 @@ namespace Example
             {
                 // First we need to create a WM client instance, to connect to our WM server API at the specified host and port.
                 // Last parameter is a prefix for path, most of the time we won't need it
-                WmClient client = WmClient.Create("http" , "3.125.49.103", "80", "");
+                WmClient client = WmClient.Create("http" , "localhost", "80", "");
             
                 if (client != null)
                 {
