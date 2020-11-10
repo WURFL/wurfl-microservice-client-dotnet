@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>WmClient</RootNamespace>
     <Authors>Scientiamobile Inc.</Authors>
     <PackageId>WmClient</PackageId>
