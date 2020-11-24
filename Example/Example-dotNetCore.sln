@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9A387BC-1129-4370-A634-D6ECD58CF5BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example-dotNetCore-vs2017", "Example-dotNetCore-vs2017.csproj", "{F0A6A3F0-E65C-4C08-81D6-EEF5E4F8950D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example-dotNetCore", "Example-dotNetCore-vs2017.csproj", "{F0A6A3F0-E65C-4C08-81D6-EEF5E4F8950D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

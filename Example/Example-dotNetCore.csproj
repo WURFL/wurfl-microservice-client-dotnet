@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Example_dotNetCore_vs2017</RootNamespace>
+    <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
+    <RootNamespace>Example_dotNetCore</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
