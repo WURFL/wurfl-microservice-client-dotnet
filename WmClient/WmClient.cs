@@ -19,8 +19,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net.Http.Headers;
 
-#if NETCORE_2_2
-    using Microsoft.AspNetCore.Http;
+#if (NETCOREAPP3_1 || NET5_0)
+using Microsoft.AspNetCore.Http;
 #else
     using System.Web;
 #endif
@@ -456,7 +456,7 @@ namespace Wmclient
             JSONDeviceData device = null;
 
             // First, do a cache lookup
-#if NETCORE_2_2
+#if (NETCOREAPP3_1 || NET5_0)
             var cacheKey = GetUserAgentCacheKey(request.Headers); // here it's a IHeaderDictionary
 #else
             var cacheKey = GetUserAgentCacheKey(request.Headers);
@@ -739,7 +739,7 @@ namespace Wmclient
         /// <returns></returns>
         public string GetApiVersion()
         {
-            return "2.1.2";
+            return "2.1.3";
         }
 
         /// <summary>
@@ -831,7 +831,7 @@ namespace Wmclient
         }
 
 
-        #if NETCORE_2_2
+    #if (NETCOREAPP3_1 || NET5_0)
         private string GetUserAgentCacheKey(IHeaderDictionary headers)
 #else
         private string GetUserAgentCacheKey(NameValueCollection headers)    
