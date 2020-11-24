@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WmClient\WmClient-dotNetCore-vs2017.csproj" />
+    <ProjectReference Include="..\WmClient\WmClient-dotNetCore.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmClient-dotNetCore-vs2017", "WmClient-dotNetCore-vs2017.csproj", "{44741583-ED5F-4590-BE85-C1FC3972C7CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmClient-dotNetCore", "WmClient-dotNetCore.csproj", "{44741583-ED5F-4590-BE85-C1FC3972C7CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmClient-DotNetCore-NUnitTest-vs2017", "..\NUnit-Test\WmClient-DotNetCore-NUnitTest-vs2017.csproj", "{95F045EC-436E-43B2-B230-90DA0685BBCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmClient-DotNetCore-NUnitTest", "..\NUnit-Test\WmClient-DotNetCore-NUnitTest.csproj", "{95F045EC-436E-43B2-B230-90DA0685BBCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
