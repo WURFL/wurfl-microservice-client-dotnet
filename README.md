@@ -16,7 +16,12 @@ the Example project contains an example api usage for a console application :
 (Requires .NET framework 4.5.2 or above, or .NET Core framework 2.2.0 or above)
 WURFL Microservice client runs on .NET Core framework since version 2.0.3.
 
-**Note: From version 2.1.2 WM client targets .Net Core 3.1**
+**Table of .NET core and WM Client compatibility**
+|   | .NET Core version | WM client version(s) |
+|---|-------------------|----------------------|
+|   |       net5.0      | 2.1.3                |
+|   |   netcoreapp3.1   | 2.1.3, 2.1.2          |
+|   |   netcoreapp2.2   | 2.1.1                |
 
 ```
 using System;
