@@ -39,8 +39,8 @@ https://www.scientiamobile.com/introducing-wurfl-microservice-for-aws/ ) of majo
         <file src="Content\App_Readme\Readme.txt" target="Content\App_Readme\Readme.txt" />
         <file src="..\WmClient\bin\Release\netcoreapp3.1\WmClient.dll" target="lib\netcoreapp3.1" />
         <file src="..\WmClient\bin\Release\netcoreapp3.1\WmClient.pdb" target="lib\netcoreapp3.1" />
-		<file src="..\WmClient\bin\Release\net5.0\Wurfl.dll" target="lib\net5.0" />
-        <file src="..\WmClient\bin\Release\net5.0\Wurfl.pdb" target="lib\net5.0" />
+        <file src="..\WmClient\bin\Release\net5.0\WmClient.dll" target="lib\net5.0" />
+        <file src="..\WmClient\bin\Release\net5.0\WmClient.pdb" target="lib\net5.0" />
         <file src="wurfl.png" target="" />
 
     </files>
