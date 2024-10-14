@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmClient", "WmClient\WmClient.csproj", "{2D090427-07C3-44BE-9662-0C4CEF1D0712}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmClient-NUnit-Test", "WmClient-NUnit-Test\WmClient-NUnit-Test.csproj", "{3B16379D-0AFE-4B0F-AF86-4FC32436E9B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnit-Test", "NUnit-Test\NUnit-Test.csproj", "{3B16379D-0AFE-4B0F-AF86-4FC32436E9B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
