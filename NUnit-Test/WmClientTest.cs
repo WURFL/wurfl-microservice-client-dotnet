@@ -34,8 +34,8 @@ namespace NUnit_Test
         String serverProtocol = "http";
 
         // to run locally, set the following environment variables
-        String serverIP = Environment.GetEnvironmentVariable("UNITTEST_REMOTE_HOST");
-        String serverPort = Environment.GetEnvironmentVariable("UNITTEST_REMOTE_PORT");
+        String? serverIP = Environment.GetEnvironmentVariable("UNITTEST_REMOTE_HOST");
+        String? serverPort = Environment.GetEnvironmentVariable("UNITTEST_REMOTE_PORT");
     
         [Test]
         public void TestCreateOk()

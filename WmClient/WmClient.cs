@@ -121,6 +121,11 @@ namespace Wmclient
         public static WmClient Create(string scheme, string host, string port, string baseURI)
         {
 
+            if (String.IsNullOrWhiteSpace(host) || String.IsNullOrWhiteSpace(port))
+            {
+                throw new WmException("Error creating WM CLIENT: invalid host/port");
+            }
+
             WmClient client = new WmClient();
 
             client.Host = host;
