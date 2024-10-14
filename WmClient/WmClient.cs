@@ -19,10 +19,10 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net.Http.Headers;
 
-#if (NETCOREAPP3_1 || NET5_0)
+#if (NETCOREAPP3_1 || NET5_0_OR_GREATER)
 using Microsoft.AspNetCore.Http;
 #else
-    using System.Web;
+using System.Web;
 #endif
 
 
@@ -120,6 +120,11 @@ namespace Wmclient
         /// <returns>A instance of the wurfl microservice client</returns>
         public static WmClient Create(string scheme, string host, string port, string baseURI)
         {
+
+            if (String.IsNullOrWhiteSpace(host) || String.IsNullOrWhiteSpace(port))
+            {
+                throw new WmException("Error creating WM CLIENT: invalid host/port");
+            }
 
             WmClient client = new WmClient();
 
@@ -456,7 +461,7 @@ namespace Wmclient
             JSONDeviceData device = null;
 
             // First, do a cache lookup
-#if (NETCOREAPP3_1 || NET5_0)
+#if (NETCOREAPP3_1 || NET5_0_OR_GREATER)
             var cacheKey = GetUserAgentCacheKey(request.Headers); // here it's a IHeaderDictionary
 #else
             var cacheKey = GetUserAgentCacheKey(request.Headers);
@@ -512,7 +517,9 @@ namespace Wmclient
             {
                 if (e is WmException)
                 {
-                    throw e;
+                    // need to use this helper method to avoid 
+                    //  CA2200: Re-throwing caught exception changes stack information
+                    ExceptionHelper.ReThrow(e);
                 }
                 throw new WmException("Error retrieving device data: " + e.Message, e);
             }
@@ -597,7 +604,9 @@ namespace Wmclient
             {
                 if (e is WmException)
                 {
-                    throw e;
+                    // need to use this helper method to avoid 
+                    //  CA2200: Re-throwing caught exception changes stack information
+                    ExceptionHelper.ReThrow(e);
                 }
                 throw new WmException("Error retrieving device data: " + e.Message, e);
             }
@@ -684,7 +693,9 @@ namespace Wmclient
             {
                 if (e is WmException)
                 {
-                    throw e;
+                    // need to use this helper method to avoid 
+                    //  CA2200: Re-throwing caught exception changes stack information
+                    ExceptionHelper.ReThrow(e);
                 }
                 throw new WmException("Error retrieving device data: " + e.Message, e);
             }
@@ -831,7 +842,7 @@ namespace Wmclient
         }
 
 
-    #if (NETCOREAPP3_1 || NET5_0)
+    #if (NETCOREAPP3_1 || NET5_0_OR_GREATER)
         private string GetUserAgentCacheKey(IHeaderDictionary headers)
 #else
         private string GetUserAgentCacheKey(NameValueCollection headers)    

@@ -23,6 +23,9 @@ using System.Threading;
 using System.Web;
 using Wmclient;
 
+// suppressing warnings related to use of constraint/classic model. We use classic.
+#pragma warning disable NUnit2005 // Consider using Assert.That(actual, Is.EqualTo(expected)) instead of ClassicAssert.AreEqual(expected, actual)
+
 namespace NUnit_Test
 {
     [TestFixture]
@@ -31,8 +34,8 @@ namespace NUnit_Test
         String serverProtocol = "http";
 
         // to run locally, set the following environment variables
-        String serverIP = Environment.GetEnvironmentVariable("UNITTEST_REMOTE_HOST");
-        String serverPort = Environment.GetEnvironmentVariable("UNITTEST_REMOTE_PORT");
+        String? serverIP = Environment.GetEnvironmentVariable("UNITTEST_REMOTE_HOST");
+        String? serverPort = Environment.GetEnvironmentVariable("UNITTEST_REMOTE_PORT");
     
         [Test]
         public void TestCreateOk()
@@ -95,7 +98,7 @@ namespace NUnit_Test
                 Assert.NotNull(device);
                 int dcount = device.Capabilities.Count;
                 Assert.True(dcount >= 40); // sum of caps, vcaps and wurfl_id
-                Assert.AreEqual(device.Capabilities["model_name"], "SM-G950F");
+                Assert.AreEqual("SM-G950F",device.Capabilities["model_name"]);
                 Assert.AreEqual("false", device.Capabilities["is_app"]);
                 Assert.AreEqual("false", device.Capabilities["is_app_webview"]);
             }
@@ -660,7 +663,7 @@ namespace NUnit_Test
             var did = jsonData.Capabilities;
             Assert.NotNull(did);
             Assert.True(did.Count >= 40); // sum of caps, vcaps and 1 wurfl_id. 40 is the size of minimum capability set
-            Assert.AreEqual(did["model_name"], "SM-G950F");
+            Assert.AreEqual("SM-G950F",did["model_name"]);
             Assert.AreEqual("false", did["is_app"]);
             Assert.AreEqual("false", did["is_app_webview"]);
         }
