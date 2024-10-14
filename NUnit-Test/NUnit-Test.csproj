@@ -12,41 +12,82 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <OutputPath>bin\Debug\</OutputPath>
+		<OutputPath>bin\Debug\</OutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <!-- Intentionally left empty to prevent building in Release mode -->
+		<!-- Intentionally left empty to prevent building in Release mode -->
 	</PropertyGroup>
 
 	<!--
-		Packages common to all targets
+	Packages common to all targets
 	-->
-	
+	<ItemGroup>
+	</ItemGroup>
 	<!--
-		Packages for .NET Framework
+	Packages for .NET Framework
 	-->
 	<ItemGroup Condition="'$(TargetFramework)' == 'net452'">
-	  <!-- Moq supports net452 till 4.17.2 -->
-	  <PackageReference Include="Moq" Version="4.17.2" />
+		<!-- Moq supports net452 till 4.17.2 -->
+		<PackageReference Include="Moq" Version="4.17.2" />
+		<!-- NUnit3TestAdapter supports net452 till 4.3.2 -->
+		<PackageReference Include="NUnit3TestAdapter" Version="4.3.2" />
+		<!-- NUnit supports net452 till 3.14.0 -->
+		<PackageReference Include="NUnit" Version="3.14.0" /> 
+		<PackageReference Include="Castle.Core" Version="4.4.1" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net462' or '$(TargetFramework)' == 'net472' or '$(TargetFramework)' == 'net48'">
-	  <PackageReference Include="Moq" Version="4.20.72" />
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net462' or '$(TargetFramework)' == 'net472' or '$(TargetFramework)' == 'net48'"> 
+		<PackageReference Include="Castle.Core" Version="5.1.1" /> 
+		<PackageReference Include="Moq" Version="4.20.72" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+
+		<!-- 
+		Since NUnit 4.x introduces a breaking change on Classic Assert (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40)
+		an easy fix without changing the test codebase is to create these alias.
+		These are valid only for SDK 6.0 or newer and for .Net Framework SDK
+		-->
+		<Using Include="NUnit.Framework.Legacy.ClassicAssert" Alias="Assert" />
+		<Using Include="NUnit.Framework.Legacy.CollectionAssert" Alias="CollectionAssert" />
+		<Using Include="NUnit.Framework.Legacy.StringAssert" Alias="StringAssert" />
+		<Using Include="NUnit.Framework.Legacy.DirectoryAssert" Alias="DirectoryAssert" />
+		<Using Include="NUnit.Framework.Legacy.FileAssert" Alias="FileAssert" />
+
+		<PackageReference Include="NUnit" Version="4.2.2" />
+
 	</ItemGroup>
 
 	<!--
-		Packages for .NET
+	Packages for .NET
 	-->
-	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' or '$(TargetFramework)' == 'net5.0' or '$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0'">
-	  <PackageReference Include="Moq" Version="4.20.72" />
-	</ItemGroup>
-	
-	<ItemGroup>
-		<PackageReference Include="coverlet.collector" Version="6.0.0" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' or '$(TargetFramework)' == 'net5.0'">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+		<PackageReference Include="Moq" Version="4.18.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" /> 
+
+		<!-- Still using NUnit prior to 4.x becuse fot net5.0 and netcoreapp3.1 there isn't an easy fix to overcome the 
+		Classic Assert breaking change introduced in 4.x
+		<PackageReference Include="Castle.Core" Version="5.1.1" /> 
+		-->
 		<PackageReference Include="NUnit" Version="3.14.0" />
-		<PackageReference Include="NUnit.Analyzers" Version="3.9.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0'"> 
+		<PackageReference Include="Moq" Version="4.20.72" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+		<!-- 
+		Since NUnit 4.x introduces a breaking change on Classic Assert (https://docs.nunit.org/articles/nunit/release-notes/breaking-changes.html#nunit-40)
+		an easy fix without changing the test codebase is to create these alias.
+		These are valid only for SDK 6.0 or newer and for .Net Framework SDK
+		-->
+
+		<Using Include="NUnit.Framework.Legacy.ClassicAssert" Alias="Assert" />
+		<Using Include="NUnit.Framework.Legacy.CollectionAssert" Alias="CollectionAssert" />
+		<Using Include="NUnit.Framework.Legacy.StringAssert" Alias="StringAssert" />
+		<Using Include="NUnit.Framework.Legacy.DirectoryAssert" Alias="DirectoryAssert" />
+		<Using Include="NUnit.Framework.Legacy.FileAssert" Alias="FileAssert" />
+
+		<PackageReference Include="NUnit" Version="4.2.2" />
 	</ItemGroup>
 
 	<ItemGroup>
