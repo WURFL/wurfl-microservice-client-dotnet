@@ -9,6 +9,10 @@
 
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
+
+		<!-- AssemblyInfo in Properties folder -->
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

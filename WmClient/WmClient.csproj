@@ -20,9 +20,8 @@
 		<AppDesignerFolder>Properties</AppDesignerFolder>
 		<RootNamespace>WmClient</RootNamespace>
 		<AssemblyName>WmClient</AssemblyName>
-	</PropertyGroup>
 
-	<PropertyGroup>
+		<!-- AssemblyInfo in Properties folder -->
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 
