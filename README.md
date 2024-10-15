@@ -14,9 +14,14 @@ This is the C#/dotNET Client API for accessing the WURFL Microservice. The API i
 
 the Example project contains an example api usage for a console application :
 (Requires .NET framework 4.5.2 or above, or .NET Core framework 2.2.0 or above).
-Please note that old .NET framework versions are only supported by WM client legacy versions.
 
 **WURFL Microservice client runs on .NET Core framework since version 2.0.3.**
+
+## Getting Started
+
+To use this project follow the steps below:
+
+1. Ensure the properly SDK are installed on your machine.
 
 **Supported .NET Frameworks**
 |   |  .NET Framework   | WM client version(s) |
@@ -31,6 +36,14 @@ Please note that old .NET framework versions are only supported by WM client leg
 |   |       net472      | since 2.1.5          |
 |   |       net462      | since 2.1.5          |
 |   |       net452      | since 2.1.3          |
+
+2. Clone or download this repository to your local machine.
+
+3. Open the solution in your preferred IDE (tested with Visual Studio 2022).
+
+4. Build the solution to restore NuGet packages and compile the code.
+
+## Usage
 
 ```
 using System;
@@ -242,4 +255,11 @@ public ActionResult MyControllerMethod()
                     // Perform a device detection calling WM server API passing the whole request headers
                     JSONDeviceData device = client.LookupHeaders(headers);
 ```
+
+
+## Contributing
+
+We want you to know that contributions to this project are welcome. Please open an issue or submit a pull request if you have any ideas, bug fixes, or improvements.  
+
+## License
 
