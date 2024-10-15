@@ -43,7 +43,7 @@ To use this project follow the steps below:
 
 4. Build the solution to restore NuGet packages and compile the code.
 
-## Usage
+## Usage (WIP)
 
 ```
 using System;
@@ -256,10 +256,9 @@ public ActionResult MyControllerMethod()
                     JSONDeviceData device = client.LookupHeaders(headers);
 ```
 
-
 ## Contributing
 
 We want you to know that contributions to this project are welcome. Please open an issue or submit a pull request if you have any ideas, bug fixes, or improvements.  
 
-## License
+## License (WIP)
 
