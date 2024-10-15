@@ -18,12 +18,19 @@ Please note that old .NET framework versions are only supported by WM client leg
 
 **WURFL Microservice client runs on .NET Core framework since version 2.0.3.**
 
-**Table of .NET core and WM Client compatibility**
-|   | .NET Core version | WM client version(s) |
+**Supported .NET Frameworks**
+|   |  .NET Framework   | WM client version(s) |
 |---|-------------------|----------------------|
-|   |       net5.0      | 2.1.4, 2.1.3         |
-|   |   netcoreapp3.1   | 2.1.4, 2.1.3, 2.1.2  |
+|   |       net8.0      | since 2.1.5          |
+|   |       net7.0      | since 2.1.5          |
+|   |       net6.0      | since 2.1.5          |
+|   |       net5.0      | since 2.1.3          |
+|   |   netcoreapp3.1   | since 2.1.2          |
 |   |   netcoreapp2.2   | 2.1.1                |
+|   |       net48       | since 2.1.5          |
+|   |       net472      | since 2.1.5          |
+|   |       net462      | since 2.1.5          |
+|   |       net452      | since 2.1.3          |
 
 ```
 using System;
