@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmClient", "WmClient\WmClie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnit-Test", "NUnit-Test\NUnit-Test.csproj", "{3B16379D-0AFE-4B0F-AF86-4FC32436E9B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{00180030-8813-48FE-8038-4109146A8E17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{3B16379D-0AFE-4B0F-AF86-4FC32436E9B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B16379D-0AFE-4B0F-AF86-4FC32436E9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B16379D-0AFE-4B0F-AF86-4FC32436E9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00180030-8813-48FE-8038-4109146A8E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00180030-8813-48FE-8038-4109146A8E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00180030-8813-48FE-8038-4109146A8E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00180030-8813-48FE-8038-4109146A8E17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
