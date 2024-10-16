@@ -10,6 +10,7 @@
         <projectUrl>https://docs.scientiamobile.com/documentation/wurfl-microservice/docker-getting-started</projectUrl>
         <repository type="git" url="https://github.com/WURFL/wurfl-microservice-client-dotnet.git" branch="master" />
         <license type="expression">Apache-2.0</license>
+		<readme>docs\readme.md</readme>
         <description>
 			The official .NET  WURFL Microservice client API allows you to query the WURFL database with no need to 
 			host and update the database itself in your applications and on your servers. 
@@ -38,23 +39,24 @@
         <tags>Mobile Phone ASP.NET WURFL Browser DDR Device Detection Data Microservice</tags>
     </metadata>
     <files>
-        <file src="..\WmClient\bin\Release\net452\WmClient.dll" target="lib\net452" />
-        <file src="..\WmClient\bin\Release\net452\WmClient.pdb" target="lib\net452" />
-        <file src="..\WmClient\bin\Release\net462\WmClient.dll" target="lib\net462" />
-        <file src="..\WmClient\bin\Release\net462\WmClient.pdb" target="lib\net462" />
-        <file src="..\WmClient\bin\Release\net472\WmClient.dll" target="lib\net472" />
-        <file src="..\WmClient\bin\Release\net472\WmClient.pdb" target="lib\net472" />
-        <file src="..\WmClient\bin\Release\net48\WmClient.dll" target="lib\net48" />
-        <file src="..\WmClient\bin\Release\net48\WmClient.pdb" target="lib\net48" />
-        <file src="..\WmClient\bin\Release\netcoreapp3.1\WmClient.dll" target="lib\netcoreapp3.1" />
-        <file src="..\WmClient\bin\Release\netcoreapp3.1\WmClient.pdb" target="lib\netcoreapp3.1" />
-        <file src="..\WmClient\bin\Release\net5.0\WmClient.dll" target="lib\net5.0" />
-        <file src="..\WmClient\bin\Release\net5.0\WmClient.pdb" target="lib\net5.0" />		
-        <file src="..\WmClient\bin\Release\net6.0\WmClient.dll" target="lib\net6.0" />
-        <file src="..\WmClient\bin\Release\net6.0\WmClient.pdb" target="lib\net6.0" />		
-        <file src="..\WmClient\bin\Release\net7.0\WmClient.dll" target="lib\net7.0" />
-        <file src="..\WmClient\bin\Release\net7.0\WmClient.pdb" target="lib\net7.0" />		
-        <file src="..\WmClient\bin\Release\net8.0\WmClient.dll" target="lib\net8.0" />
-        <file src="..\WmClient\bin\Release\net8.0\WmClient.pdb" target="lib\net8.0" />		
+        <file src="bin\Release\net452\WmClient.dll" target="lib\net452" />
+        <file src="bin\Release\net452\WmClient.pdb" target="lib\net452" />
+        <file src="bin\Release\net462\WmClient.dll" target="lib\net462" />
+        <file src="bin\Release\net462\WmClient.pdb" target="lib\net462" />
+        <file src="bin\Release\net472\WmClient.dll" target="lib\net472" />
+        <file src="bin\Release\net472\WmClient.pdb" target="lib\net472" />
+        <file src="bin\Release\net48\WmClient.dll" target="lib\net48" />
+        <file src="bin\Release\net48\WmClient.pdb" target="lib\net48" />
+        <file src="bin\Release\netcoreapp3.1\WmClient.dll" target="lib\netcoreapp3.1" />
+        <file src="bin\Release\netcoreapp3.1\WmClient.pdb" target="lib\netcoreapp3.1" />
+        <file src="bin\Release\net5.0\WmClient.dll" target="lib\net5.0" />
+        <file src="bin\Release\net5.0\WmClient.pdb" target="lib\net5.0" />		
+        <file src="bin\Release\net6.0\WmClient.dll" target="lib\net6.0" />
+        <file src="bin\Release\net6.0\WmClient.pdb" target="lib\net6.0" />		
+        <file src="bin\Release\net7.0\WmClient.dll" target="lib\net7.0" />
+        <file src="bin\Release\net7.0\WmClient.pdb" target="lib\net7.0" />		
+        <file src="bin\Release\net8.0\WmClient.dll" target="lib\net8.0" />
+        <file src="bin\Release\net8.0\WmClient.pdb" target="lib\net8.0" />	
+		<file src="..\README.md" target="docs\readme.md" />		
     </files>
 </package>

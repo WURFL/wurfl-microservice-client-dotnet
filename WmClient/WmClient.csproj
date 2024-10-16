@@ -13,6 +13,8 @@
 		removed .. is it needed ?
 		<ImplicitUsings>enable</ImplicitUsings>
 		-->
+		<IsPackable>true</IsPackable>
+		<NuspecFile>WMClient_API_DotNet.nuspec</NuspecFile>
 	</PropertyGroup>
 
 	<PropertyGroup>
