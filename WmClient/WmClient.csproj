@@ -14,7 +14,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		-->
 		<IsPackable>true</IsPackable>
-		<NuspecFile>WMClient_API_DotNet.nuspec</NuspecFile>
+		<NuspecFile>WmClient_API_DotNet.nuspec</NuspecFile>
 	</PropertyGroup>
 
 	<PropertyGroup>
