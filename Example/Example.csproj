@@ -7,10 +7,20 @@
 
 		<!-- AssemblyInfo in Properties folder -->
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>	
+		
+		<!-- set restore source if needed. 
+			Default to https://api.nuget.org/v3/index.json 
+			https://apiint.nugettest.org/v3/index.json; for nuget sandbox 
+		-->
+		<RestoreSources>
+			https://api.nuget.org/v3/index.json;
+			https://apiint.nugettest.org/v3/index.json;
+		</RestoreSources>
+
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\WmClient\WmClient.csproj" />
+		<PackageReference Include="ScientiaMobile.Wurfl.Microservice.Client.t5" Version="2.1.5"/>
 	</ItemGroup>
-	
+
 </Project>
