@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Wmclient;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -9,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("WURFL Microservice .NET API Example")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ScientiaMobile, Inc.")]
-[assembly: AssemblyProduct("WmClient-NUnit-Test")]
+[assembly: AssemblyProduct("WmClient - Example")]
 [assembly: AssemblyCopyright("Copyright © ScientiaMobile, Inc. 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
