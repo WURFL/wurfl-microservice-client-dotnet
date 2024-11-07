@@ -41,8 +41,10 @@ To use this project follow the steps below:
 
 ## Usage
 
-You may find an example solution of how to use the WmClient dll in the Example folder.
-It is a cli app that uses the latest WmClient Nuget package.
+You may find an example solution of how to use the WmClient dll in the Example folder. 
+
+It is a cli app that uses the latest WmClient Nuget package. 
+
 Please refer to its source code comments for details.
 
 Alternatively, if code is running inside a web application that provides a HttpRequest instance, you can initialize WM client inside - for example, in the global.asax file 
