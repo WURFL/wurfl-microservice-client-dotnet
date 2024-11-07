@@ -47,7 +47,7 @@ namespace Wmclient
 
     public static class ExceptionHelper
     {
-        // This method preserves the original stack trace when an exception is thrown again ina a catch block
+        // This method preserves the original stack trace when an exception is thrown again in a catch block
         public static void ReThrow(Exception ex)
         {
             System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
