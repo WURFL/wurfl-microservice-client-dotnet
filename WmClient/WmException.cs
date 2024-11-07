@@ -18,7 +18,7 @@ using System;
 namespace Wmclient
 {
     /// <summary>
-    /// WmException is a general purpose exception throws whenever an unrecoverable error occurs during device detection (ie: no connection available to WM server,
+    /// WmException is a general purpose exception thrown whenever an unrecoverable error occurs during device detection (ie: no connection available to WM server,
     /// wrong url or port configurations, etc.
     /// </summary>
     public class WmException:Exception
