@@ -14,18 +14,18 @@ This is the C#/dotNET Client API for accessing the WURFL Microservice. The API i
 
 ## Supported .NET Frameworks
 
-  .NET Framework   | WM client version(s) 
--------------------|----------------------
-       net8.0      | since 2.2.0          
-       net7.0      | since 2.2.0          
-       net6.0      | since 2.2.0          
-       net5.0      | since 2.1.3          
-   netcoreapp3.1   | since 2.1.2          
-   netcoreapp2.2   | 2.1.1                
-       net481      | since 2.2.0          
-       net472      | since 2.2.0          
-       net462      | since 2.2.0          
-       net452      | since 2.1.3          
+ .NET Framework   | WM client version(s) 
+------------------|----------------------
+net8.0            | since 2.2.0          
+net7.0            | since 2.2.0          
+net6.0            | since 2.2.0          
+net5.0            | since 2.1.3          
+netcoreapp3.1     | since 2.1.2          
+netcoreapp2.2     | 2.1.1                
+net481            | since 2.2.0          
+net472            | since 2.2.0          
+net462            | since 2.2.0          
+net452            | since 2.1.3          
 
 ## Getting Started
 
