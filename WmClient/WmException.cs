@@ -18,7 +18,7 @@ using System;
 namespace Wmclient
 {
     /// <summary>
-    /// WmException is a general purpouse exception throws whenever an unrecoverable error occurs during device detection (ie: no connection available to WM server,
+    /// WmException is a general purpose exception thrown whenever an unrecoverable error occurs during device detection (ie: no connection available to WM server,
     /// wrong url or port configurations, etc.
     /// </summary>
     public class WmException:Exception
@@ -42,6 +42,15 @@ namespace Wmclient
         public WmException(string message, Exception innerException)
             : base(message, innerException)
         {
+        }
+    }
+
+    public static class ExceptionHelper
+    {
+        // This method preserves the original stack trace when an exception is thrown again in a catch block
+        public static void ReThrow(Exception ex)
+        {
+            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex).Throw();
         }
     }
 }

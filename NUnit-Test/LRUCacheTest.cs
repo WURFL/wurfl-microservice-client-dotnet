@@ -18,6 +18,9 @@ using System;
 using System.Threading;
 using Wmclient;
 
+// suppressing warnings related to use of constraint/classic model. We use classic.
+#pragma warning disable NUnit2005 // Consider using Assert.That(actual, Is.EqualTo(expected)) instead of ClassicAssert.AreEqual(expected, actual)
+
 namespace NUnit_Test
 {
     [TestFixture]
@@ -31,7 +34,7 @@ namespace NUnit_Test
             {
                 cache.PutEntry(i.ToString(), new TestNode(i.ToString(), i));
             }
-            Assert.AreEqual(cache.Size(), 5);
+            Assert.AreEqual(5, cache.Size());
             // "0" entry has been removed when inserting "6"
             Assert.Null(cache.GetEntry("0"));
         }
@@ -44,7 +47,7 @@ namespace NUnit_Test
             {
                 cache.PutEntry(i.ToString(), new TestNode(i.ToString(), i));
             }
-            Assert.AreEqual(cache.Size(), 5);
+            Assert.AreEqual(5, cache.Size());
             // Now put an element with the same key and a different value
             cache.PutEntry("2", new TestNode("2", 159));
             // previous value has been overwritten
@@ -62,9 +65,9 @@ namespace NUnit_Test
 
             // re-add element with different value
             cache.PutEntry("3", 7);
-            Assert.AreEqual(cache.Size(), 5);
+            Assert.AreEqual(5, cache.Size());
             // "0" entry has been removed when inserting "6"
-            Assert.AreEqual(cache.GetEntry("3"), 7);
+            Assert.AreEqual(7,cache.GetEntry("3"));
         }
 
         [Test]
