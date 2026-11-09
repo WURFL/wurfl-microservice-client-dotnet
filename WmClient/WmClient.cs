@@ -149,8 +149,9 @@ namespace Wmclient
                 data = client.GetInfo();
 
                 client.ImportantHeaders = data.Important_headers;
-                client.StaticCaps = data.Static_caps;
-                client.VirtualCaps = data.Virtual_caps;
+                // the server may omit one of the two lists: treat a missing list as empty
+                client.StaticCaps = data.Static_caps ?? new string[0];
+                client.VirtualCaps = data.Virtual_caps ?? new string[0];
                 Array.Sort(client.StaticCaps);
                 Array.Sort(client.VirtualCaps);
             }
@@ -231,7 +232,7 @@ namespace Wmclient
 
         private bool arrayHasValue(string[] caps, string capName)
         {
-            return (Array.BinarySearch(caps, capName) >= 0);
+            return caps != null && Array.BinarySearch(caps, capName) >= 0;
         }
 
         public void SetRequestedCapabilities(string[] capsList)
@@ -664,7 +665,7 @@ namespace Wmclient
             }
             else
             {
-                throw new WmException(String.Format("Error getting data from WM server: %s does not exist", make));
+                throw new WmException(String.Format("Error getting data from WM server: {0} does not exist", make));
             }
 
         }
@@ -793,7 +794,7 @@ namespace Wmclient
             }
             else
             {
-                throw new WmException(String.Format("Error getting data from WM server: %s does not exist", osName));
+                throw new WmException(String.Format("Error getting data from WM server: {0} does not exist", osName));
             }
         }
 
