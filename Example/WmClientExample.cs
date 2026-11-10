@@ -148,8 +148,12 @@ namespace Example
             finally
             {
                 
-                Console.Write("Press a key...");
-                Console.ReadKey();
+                // Wait for a key only when run interactively (no input redirection, e.g. in a CI/docker run)
+                if (!Console.IsInputRedirected)
+                {
+                    Console.Write("Press a key...");
+                    Console.ReadKey();
+                }
             }
         }
 

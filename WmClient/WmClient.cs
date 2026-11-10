@@ -751,7 +751,7 @@ namespace Wmclient
         /// <returns></returns>
         public string GetApiVersion()
         {
-            return "2.2.1";
+            return "2.3.0";
         }
 
         /// <summary>

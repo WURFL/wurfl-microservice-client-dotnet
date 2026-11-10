@@ -16,6 +16,8 @@ This is the C#/dotNET Client API for accessing the WURFL Microservice. The API i
 
  .NET Framework   | WM client version(s) 
 ------------------|----------------------
+net10.0           | since 2.3.0          
+net9.0            | since 2.3.0          
 net8.0            | since 2.2.0          
 net7.0            | since 2.2.0          
 net6.0            | since 2.2.0          
