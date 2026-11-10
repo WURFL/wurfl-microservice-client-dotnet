@@ -143,7 +143,8 @@ namespace NUnit_Test
                 var did = device.Capabilities;
                 Assert.NotNull(did);
                 Assert.NotNull(device.APIVersion);
-                Assert.True(device.Error.Length == 0);
+                // Server may omit the error field when there is no error
+                Assert.True(device.Error == null || device.Error.Length == 0);
                 Assert.AreEqual("generic", device.Capabilities["wurfl_id"]);
             }
             finally
@@ -162,7 +163,8 @@ namespace NUnit_Test
                 Assert.NotNull(device);
                 var did = device.Capabilities;
                 Assert.NotNull(did);
-                Assert.NotNull(device.Error);
+                // Server may omit the error field (null) when there is no error
+                Assert.True(device.Error == null || device.Error.Length == 0);
                 // From v 2.1.0 server returns a generic device when queried qith null/empty User-Agent
                 Assert.AreEqual("generic", device.Capabilities["wurfl_id"]);
 

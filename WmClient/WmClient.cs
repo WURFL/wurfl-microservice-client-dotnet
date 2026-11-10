@@ -149,8 +149,9 @@ namespace Wmclient
                 data = client.GetInfo();
 
                 client.ImportantHeaders = data.Important_headers;
-                client.StaticCaps = data.Static_caps;
-                client.VirtualCaps = data.Virtual_caps;
+                // the server may omit one of the two lists: treat a missing list as empty
+                client.StaticCaps = data.Static_caps ?? new string[0];
+                client.VirtualCaps = data.Virtual_caps ?? new string[0];
                 Array.Sort(client.StaticCaps);
                 Array.Sort(client.VirtualCaps);
             }
@@ -231,7 +232,7 @@ namespace Wmclient
 
         private bool arrayHasValue(string[] caps, string capName)
         {
-            return (Array.BinarySearch(caps, capName) >= 0);
+            return caps != null && Array.BinarySearch(caps, capName) >= 0;
         }
 
         public void SetRequestedCapabilities(string[] capsList)
@@ -664,7 +665,7 @@ namespace Wmclient
             }
             else
             {
-                throw new WmException(String.Format("Error getting data from WM server: %s does not exist", make));
+                throw new WmException(String.Format("Error getting data from WM server: {0} does not exist", make));
             }
 
         }
@@ -750,7 +751,7 @@ namespace Wmclient
         /// <returns></returns>
         public string GetApiVersion()
         {
-            return "2.1.4";
+            return "2.2.1";
         }
 
         /// <summary>
@@ -772,29 +773,25 @@ namespace Wmclient
         public String[] GetAllVersionsForOS(String osName)
         {
             LoadDeviceOsesData();
-            if (deviceOsVersionsMap.ContainsKey(osName))
+            lock (_deviceOSesLock)
             {
-                IList<String> osVersions = deviceOsVersionsMap[osName];
-                // Old school way to avoid modification errors.
-                for (int i = osVersions.Count - 1; i >= 0; i--)
+                IList<String> osVersions;
+                if (deviceOsVersionsMap != null && deviceOsVersionsMap.TryGetValue(osName, out osVersions))
                 {
-                    if (osVersions[i].Length == 0)
+                    // Build a new array: the cached list is shared between threads and must never be modified.
+                    List<String> filtered = new List<String>(osVersions.Count);
+                    foreach (String version in osVersions)
                     {
-                        osVersions.RemoveAt(i);
+                        if (!String.IsNullOrEmpty(version))
+                        {
+                            filtered.Add(version);
+                        }
                     }
+                    return filtered.ToArray();
                 }
+            }
 
-                String[] arrDevOsVersions = new String[osVersions.Count];
-                if (osVersions.Count > 0)
-                {
-                    osVersions.CopyTo(arrDevOsVersions, 0);
-                }
-                return arrDevOsVersions;
-            }
-            else
-            {
-                throw new WmException(String.Format("Error getting data from WM server: %s does not exist", osName));
-            }
+            throw new WmException(String.Format("Error getting data from WM server: {0} does not exist", osName));
         }
 
 
